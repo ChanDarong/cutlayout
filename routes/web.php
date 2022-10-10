@@ -50,7 +50,7 @@ Route::post('/todolist/create', [TodoController::class, 'store'])->name('todo.st
 Route::get('/todolist/{todo}/view', [TodoController::class, 'show'])->name('todo.view');
 Route::get('/todolist/{todo}/edit', [TodoController::class, 'edit'])->name('todo.edit');
 Route::put('/todolist/{todo}', [TodoController::class, 'update'])->name('todo.update');
-Route::delete('/todolist/{todo}/delete', [TodoController::class, 'destroy'])->name('todo.delete');
+Route::get('/todolist/{todo}/delete', [TodoController::class, 'destroy'])->name('todo.delete');
 Route::get('/todolist/trash', [TodoController::class, 'trash'])->name('todo.trash');
 Route::get('/todolist/{todo}/restore', [TodoController::class, 'restore']);
 Route::get('/todolist/{todo}/forcedelete', [TodoController::class, 'forceDelete']);

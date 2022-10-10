@@ -26,7 +26,7 @@
 
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
-            // sweet alert
+            {{-- sweet alert --}}
 
             <script src="sweetalert2.min.js"></script>
             <link rel="stylesheet" href="sweetalert2.min.css">
@@ -198,12 +198,6 @@
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
-    <!-- Sweet Alerts js -->
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
-    <!-- Sweet alert init js-->
-    <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
-
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
@@ -213,6 +207,9 @@
     <script src="{{asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready( function () {
             $('#table_id').DataTable();

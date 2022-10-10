@@ -1,6 +1,10 @@
 @extends('layouts.index')
 
 @section('header')
+
+<!-- csrf-token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -157,10 +161,13 @@
                                             class="btn btn-primary btn-sm waves-effect waves-light">View</a>
                                         <a href="/todolist/{{ $todo->id }}/edit"
                                             class="btn btn-success btn-sm waves-effect waves-light">Edit</a>
-                                        <form action="/todolist/{{ $todo->id }}/delete" name="form_delete" method="post" class=" d-inline-block form_delete">
+                                        <form action="/todolist/{{ $todo->id }}/delete" name="form_delete" method="post" class=" d-inline-block form_softdelete">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" data-id="{{ $todo->id }}" data-token="{{ csrf_token() }}" class="btn btn-danger btn-sm waves-effect waves-light" >Delete</button>
+                                            <button type="submit"
+                                            data-id="{{ $todo->id }}"
+                                            data-token="{{ csrf_token() }}"
+                                            class="btn btn-danger btn-sm waves-effect waves-light btn-delete" >Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -254,29 +261,32 @@
             //         }
             //     });
             // });
-            $(".form-delete").submit(function (e) {
-            e.preventDefault();
-            var self = $(this);
-            console.log(self.data());
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
-                    location.href = self.attr('action');
-                }
-            })
-        });
+            $(".btn-delete").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                Swal.fire({
+                    title: 'Delete?',
+                    text: "Your will be move to trash.",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }). then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                        'Deleted!',
+                        'Your task has been deleted.',
+                        'success'
+                        );
+                        // location.reload();
+                        setTimeout(function(){
+                            location.href = '/todolist/' + id + '/delete';
+                        },1500);
+                    }
+                });
+                    // location.href = self.attr('action');
+            });
 
 
 

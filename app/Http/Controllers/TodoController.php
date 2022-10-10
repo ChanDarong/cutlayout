@@ -112,6 +112,7 @@ class TodoController extends Controller
     }
 
     public function restore($todo){
+        toast('One task has been restored','success');
         Todo::onlyTrashed()->where('id', $todo)->restore();
         return redirect()->back();
     }
