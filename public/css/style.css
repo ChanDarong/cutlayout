@@ -1,0 +1,16 @@
+.filter-bar{
+    position:fixed;
+    right: -240px;
+    top: 80px;
+    transition: all .3s ease;
+
+}
+
+.filter-bar-active{
+    background-color: #2a3042 !important;
+    width: 300px;
+    height: 500px;
+    right: 0px;
+    box-shadow: 0 0 20px 30px rgba(179, 179, 179, 0.068);
+    overflow-y: auto;
+}
